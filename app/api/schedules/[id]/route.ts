@@ -29,7 +29,9 @@ export const PATCH = async (req: Request,  { params }: { params: { id?: string }
         connectToDb();
 
         const {id} = params
-        const todo = await Todo.findByIdAndUpdate(id ,req.json, {new: true});
+        const body = await req.json()
+        console.log(body)
+        const todo = await Todo.findByIdAndUpdate(id , body, {new: true});
 
         return NextResponse.json(todo);
     } catch (error) {

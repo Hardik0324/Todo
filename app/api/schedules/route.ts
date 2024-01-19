@@ -17,6 +17,7 @@ export const GET = async (req: NextRequest) => {
 
         const searchParams = req.nextUrl.searchParams
         const search = searchParams.get("search")
+        console.log(search)
         const todos = search ? await Todo.find({title: search}) : await Todo.find();
 
         let resp = [];

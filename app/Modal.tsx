@@ -6,6 +6,10 @@ import React, { useState } from "react";
 
 interface ModalProps {
   addtodo: React.Dispatch<React.SetStateAction<boolean>>;
+  fetchTodo: () => void;
+  tit: string;
+  update: boolean;
+  inde: string;
 }
 
 const Modal: React.FC<ModalProps> = ({

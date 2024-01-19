@@ -5,25 +5,41 @@ import axios from 'axios'
 import {config} from '@/lib/Config'
 import Modal from './Modal'
 
-const Table = ({todo, fetchTodo}) => {
+interface Todo {
+  _id: string;
+  title: string;
+  description: string;
+  subject: string;
+  frequency: string;
+  repeat: string;
+  time: string;
+}
 
-    const [add, setAdd] = useState(false)
-    const [ind, setInd] = useState()
+interface TableProps {
+  todo: Todo[];
+  fetchTodo: () => void;
+}
 
-    const deleteTodo = async(id)=>{
-        try {
-            const data = await axios.delete(`${config.backEndpoint}/api/schedules/${id}`)
-            fetchTodo();
-        } catch (error) {
-            console.log(error);
-        }
+const Table: React.FC<TableProps> = ({ todo, fetchTodo }) => {
+  const [add, setAdd] = useState(false);
+  const [ind, setInd] = useState<number | undefined>(undefined);
+
+  const deleteTodo = async (id: string) => {
+    try {
+      const data = await axios.delete(
+        `${config.backEndpoint}/api/schedules/${id}`
+      );
+      fetchTodo();
+    } catch (error) {
+      console.log(error);
     }
-    console.log(add)
+  };
+  console.log(add);
 
-    const set = (index) =>{
-        setAdd(!add);
-        setInd(index)
-    }
+  const set = (index: number) => {
+    setAdd(!add);
+    setInd((prevInd) => (prevInd === index ? undefined : index));
+  };
   return (
     <div className="m-5 border-2 border-inherit rounded">
       <div className="flex w-[100%] py-2 px-4 bg-[#D8D2DE]">
@@ -73,6 +89,6 @@ const Table = ({todo, fetchTodo}) => {
       ))}
     </div>
   );
-}
+};
 
 export default Table

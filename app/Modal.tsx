@@ -21,21 +21,21 @@ const Modal: React.FC<ModalProps> = ({
 }) => {
   console.log(inde);
 
-  const [freq, setFreq] = useState("Daily");
-  const [title, setTitle] = useState();
-  const [description, setDescription] = useState();
-  const [subject, setSubject] = useState();
-  const [repeat, setRepeat] = useState("");
-  const [time, setTime] = useState("10 AM");
+  const [freq, setFreq] = useState<string>("Daily");
+  const [title, setTitle] = useState<string | undefined>(undefined);
+  const [description, setDescription] = useState<string | undefined>(undefined);
+  const [subject, setSubject] = useState<string | undefined>(undefined);
+  const [repeat, setRepeat] = useState<string>("");
+  const [time, setTime] = useState<string>("10 AM");
 
-  const updateFreq = (frequency) => {
+  const updateFreq = (frequency: string) => {
     setFreq(frequency);
     if (frequency == "Monthly") {
       setRepeat("First Monday");
     }
   };
 
-  const addTodoDb = async (inde) => {
+  const addTodoDb = async () => {
     const body = {
       title,
       description,
@@ -260,7 +260,7 @@ const Modal: React.FC<ModalProps> = ({
         {update ? (
           <button
             className="py-[5px] w-[91px] bg-[#391E5A] border-2 border-black rounded text-white"
-            onClick={() => updateTodoDb(inde)}
+            onClick={() => updateTodoDb()}
           >
             Update
           </button>

@@ -16,8 +16,9 @@ const Search: React.FC<SearchProps> = ({ fetchTodo, setTodo }) => {
   const [add, setAdd] = useState(false);
   const [search, setSearch] = useState("");
 
-  const searchTodo = async () => {
-    console.log(search);
+  const searchTodo = async (e: any) => {
+    // console.log(search);
+    e.preventDefault();
     if (search == "") {
       fetchTodo();
     } else {
@@ -42,7 +43,10 @@ const Search: React.FC<SearchProps> = ({ fetchTodo, setTodo }) => {
 
   return (
     <div className="w-[100%] h-[12%] p-5 flex justify-between relative">
-      <div className="w-[25%] h-[100%] relative flex items-center">
+      <form
+        className="w-[25%] h-[100%] relative flex items-center"
+        onSubmit={searchTodo}
+      >
         <input
           type="search"
           placeholder="Search"
@@ -53,9 +57,9 @@ const Search: React.FC<SearchProps> = ({ fetchTodo, setTodo }) => {
           src="https://cdn-icons-png.flaticon.com/512/107/107122.png"
           alt=""
           className="w-[35px] h-[75%] p-[5px] absolute right-[5%] hover: cursor-pointer"
-          onClick={() => searchTodo()}
+          onClick={searchTodo}
         />
-      </div>
+      </form>
       <button
         className="w-[6%] mr-[5%] py-[8px] px-[10px] bg-[#391E5A] text-white rounded flex items-center justify-between relative"
         onClick={() => setAdd(!add)}

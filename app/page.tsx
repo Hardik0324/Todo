@@ -1,6 +1,3 @@
-import Image from 'next/image'
-import Search from './search'
-import Table from './Table'
 import Body1 from './body1'
 
 export default function Home() {

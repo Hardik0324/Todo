@@ -1,10 +1,11 @@
-"use client"
+"use client";
 
-import React, {useState} from 'react';
-import Image from 'next/image';
-import Modal from './Modal';
-import { config } from '@/lib/Config';
-import axios from 'axios';
+import React, { useState } from "react";
+import Image from "next/image";
+import Modal from "./Modal";
+import { config } from "@/lib/Config";
+import axios from "axios";
+import { FaPlus } from "react-icons/fa";
 
 interface SearchProps {
   fetchTodo: () => void;
@@ -32,7 +33,7 @@ const Search: React.FC<SearchProps> = ({ fetchTodo, setTodo }) => {
     }
   };
 
-  const setSer = (ser:string) => {
+  const setSer = (ser: string) => {
     if (ser == "") {
       fetchTodo();
     }
@@ -59,11 +60,9 @@ const Search: React.FC<SearchProps> = ({ fetchTodo, setTodo }) => {
         className="w-[6%] mr-[5%] py-[8px] px-[10px] bg-[#391E5A] text-white rounded flex items-center justify-between relative"
         onClick={() => setAdd(!add)}
       >
-        <img
-          src="https://cdn-user-icons.flaticon.com/134585/134585999/1705505056332.svg?token=exp=1705505971~hmac=068540da1a946db58737983ee754896b"
-          alt=""
-          className="h-[70%]"
-        />
+        <div className="text-white font-bold rounded-full p-1 h-6 w-6 border-2 border-white flex justify-center items-center">
+          <FaPlus />
+        </div>
         Add
       </button>
       <div className="absolute right-[12%] top-[23%] z-50">

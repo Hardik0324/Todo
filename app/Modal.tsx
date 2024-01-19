@@ -21,6 +21,37 @@ const Modal: React.FC<ModalProps> = ({
 }) => {
   console.log(inde);
 
+  const days = [
+    {
+      name: "sunday",
+      value: "S",
+    },
+    {
+      name: "monday",
+      value: "M",
+    },
+    {
+      name: "tuesday",
+      value: "T",
+    },
+    {
+      name: "wednesday",
+      value: "W",
+    },
+    {
+      name: "thursday",
+      value: "T",
+    },
+    {
+      name: "friday",
+      value: "F",
+    },
+    {
+      name: "saturday",
+      value: "S",
+    },
+  ];
+
   const [freq, setFreq] = useState<string>("Daily");
   const [title, setTitle] = useState<string | undefined>(undefined);
   const [description, setDescription] = useState<string | undefined>(undefined);
@@ -142,91 +173,19 @@ const Modal: React.FC<ModalProps> = ({
         ) : (
           <div className="mb-[8px] flex justify-between items-center">
             <span className="h-fit text-black">Repeat</span>
-            <div className="flex gap-x-[8px]">
-              <div className="w-[24px] h-[24px] relative">
-                <input
-                  type="radio"
-                  name="repeat"
-                  value="Sunday"
-                  className="w-[24px] h-[24px] border-2 border-inherit rounded-full font-bold flex justify-center items-center"
-                  onChange={(e) => setRepeat(e.target.value)}
-                />
-                <span className="absolute text-black top-0 left-[30%] w-0">
-                  S
-                </span>
-              </div>
-              <div className="w-[24px] h-[24px] relative">
-                <input
-                  type="radio"
-                  name="repeat"
-                  value="Monday"
-                  className="w-[24px] h-[24px] border-2 border-inherit rounded-full font-bold flex justify-center items-center"
-                  onChange={(e) => setRepeat(e.target.value)}
-                />
-                <span className="absolute text-black top-0 left-[25%] w-0">
-                  M
-                </span>
-              </div>
-              <div className="w-[24px] h-[24px] relative">
-                <input
-                  type="radio"
-                  name="repeat"
-                  value="Tuesday"
-                  className="w-[24px] h-[24px] border-2 border-inherit rounded-full font-bold flex justify-center items-center"
-                  onChange={(e) => setRepeat(e.target.value)}
-                />
-                <span className="absolute text-black top-0 left-[30%] w-0">
-                  T
-                </span>
-              </div>
-              <div className="w-[24px] h-[24px] relative">
-                <input
-                  type="radio"
-                  name="repeat"
-                  value="Wednesday"
-                  className="w-[24px] h-[24px] border-2 border-inherit rounded-full font-bold flex justify-center items-center"
-                  onChange={(e) => setRepeat(e.target.value)}
-                />
-                <span className="absolute text-black top-0 left-[25%] w-0">
-                  W
-                </span>
-              </div>
-              <div className="w-[24px] h-[24px] relative">
-                <input
-                  type="radio"
-                  name="repeat"
-                  value="Thrusday"
-                  className="w-[24px] h-[24px] border-2 border-inherit rounded-full font-bold flex justify-center items-center"
-                  onChange={(e) => setRepeat(e.target.value)}
-                />
-                <span className="absolute text-black top-0 left-[30%] w-0">
-                  T
-                </span>
-              </div>
-              <div className="w-[24px] h-[24px] relative">
-                <input
-                  type="radio"
-                  name="repeat"
-                  value="Friday"
-                  className="w-[24px] h-[24px] border-2 border-inherit rounded-full font-bold flex justify-center items-center"
-                  onChange={(e) => setRepeat(e.target.value)}
-                />
-                <span className="absolute text-black top-0 left-[30%] w-0">
-                  F
-                </span>
-              </div>
-              <div className="w-[24px] h-[24px] relative">
-                <input
-                  type="radio"
-                  name="repeat"
-                  value="Saturday"
-                  className="w-[24px] h-[24px] border-2 border-inherit rounded-full font-bold flex justify-center items-center"
-                  onChange={(e) => setRepeat(e.target.value)}
-                />
-                <span className="absolute text-black top-0 left-[30%] w-0">
-                  S
-                </span>
-              </div>
+            <div className="flex gap-[8px] ml-0">
+              {days.map((day) => (
+                <button
+                  key={day.name}
+                  onClick={() => setRepeat(day.name)}
+                  className={
+                    "p-1 rounded-full border-2 h-6 w-6 flex justify-center items-center text-xs " +
+                    (repeat == day.name ? "bg-black text-white" : "text-black")
+                  }
+                >
+                  {day.value}
+                </button>
+              ))}
             </div>
           </div>
         )

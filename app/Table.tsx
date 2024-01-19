@@ -66,7 +66,7 @@ const Table: React.FC<TableProps> = ({ todo, fetchTodo }) => {
               onClick={() => set(index)}
             />
             <img
-              src="https://cdn-user-icons.flaticon.com/134585/134585999/1705613498260.svg?token=exp=1705614406~hmac=4f794140083783758078696696071460"
+              src="https://cdn-icons-png.flaticon.com/512/13645/13645593.png"
               alt=""
               className="w-[20px] h-[20px] hover: cursor-pointer"
               onClick={() => deleteTodo(item._id)}

@@ -53,10 +53,12 @@ const Search: React.FC<SearchProps> = ({ fetchTodo, setTodo }) => {
           className="w-[100%] h-[100%] p-[5px] border-2 border-inherit rounded"
           onChange={(e) => setSer(e.target.value)}
         />
-        <img
+        <Image
           src="https://cdn-icons-png.flaticon.com/512/107/107122.png"
           alt=""
-          className="w-[35px] h-[75%] p-[5px] absolute right-[5%] hover: cursor-pointer"
+          width={35}
+          height={75}
+          className="h-[75%] p-[5px] absolute right-[5%] hover: cursor-pointer"
           onClick={searchTodo}
         />
       </form>

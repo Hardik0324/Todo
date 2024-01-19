@@ -4,6 +4,7 @@ import React,  {useEffect, useState} from 'react'
 import axios from 'axios'
 import {config} from '@/lib/Config'
 import Modal from './Modal'
+import Image from 'next/image'
 
 interface Todo {
   _id: string;
@@ -59,16 +60,20 @@ const Table: React.FC<TableProps> = ({ todo, fetchTodo }) => {
             {item?.time}
           </span>
           <span className="w-[20%] flex gap-2 relative -z-0">
-            <img
+            <Image
               src="https://cdn-icons-png.flaticon.com/512/10146/10146590.png"
               alt=""
-              className="w-[20px] h-[20px] hover: cursor-pointer"
+              width={20}
+              height={20}
+              className="w-[16px] h-[16px] hover: cursor-pointer"
               onClick={() => set(index)}
             />
-            <img
+            <Image
               src="https://cdn-icons-png.flaticon.com/512/13645/13645593.png"
               alt=""
-              className="w-[20px] h-[20px] hover: cursor-pointer"
+              width={20}
+              height={20}
+              className="w-[14px] h-[16px] hover: cursor-pointer"
               onClick={() => deleteTodo(item._id)}
             />
             <div className="absolute top-[100%] right-[100%]">

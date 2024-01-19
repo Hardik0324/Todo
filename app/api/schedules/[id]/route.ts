@@ -2,14 +2,6 @@ import {Todo} from "@/lib/model";
 import { connectToDb } from "@/lib/util";
 import { NextResponse } from "next/server";
 
-export const config = {
-  api: {
-    bodyParser: {
-      sizeLimit: '1mb',
-    },
-  },
-};
-
 export const GET = async (req: Request,  { params }: { params: { id?: string } }) => {
     try {
         connectToDb();

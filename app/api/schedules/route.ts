@@ -33,6 +33,8 @@ export const POST = async (req: Request)=>{
     try {
         connectToDb();
 
+        console.log("1")
+
         const body = await req.json();
 
         const todo = await Todo.create(body);

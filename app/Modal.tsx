@@ -73,7 +73,11 @@ const Modal: React.FC<ModalProps> = ({
     }
   };
 
-  const formatDateToAMPM = (isoDateString : Date) => {
+  const formatDateToAMPM = (isoDateString: Date | undefined) => {
+    if (!isoDateString) {
+      return ""; // or handle the undefined case accordingly
+    }
+
     const date = new Date(isoDateString);
     const hours = date.getHours();
     const minutes = date.getMinutes();
@@ -82,6 +86,7 @@ const Modal: React.FC<ModalProps> = ({
     const formattedMinutes = minutes < 10 ? `0${minutes}` : minutes;
     return `${formattedHours} ${period}`;
   };
+
 
   const addTodoDb = async () => {
     const body = {

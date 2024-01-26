@@ -63,7 +63,7 @@ const Search: React.FC<SearchProps> = ({ fetchTodo, setTodo }) => {
         />
       </form>
       <button
-        className="mr-[5%] py-[8px] px-[10px] bg-[#391E5A] text-white rounded flex items-center justify-between relative"
+        className="mr-[5%] py-[8px] px-[10px] bg-[#391E5A] text-white rounded flex items-center justify-between gap-8 relative"
         onClick={() => setAdd(!add)}
       >
         <div className="text-white font-bold rounded-full p-1 h-6 w-6 border-2 border-white flex justify-center items-center">

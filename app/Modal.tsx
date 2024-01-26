@@ -3,6 +3,11 @@
 import { config } from "@/lib/Config";
 import axios from "axios";
 import React, { useState } from "react";
+import dayjs from "dayjs";
+import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { TimePicker } from "@mui/x-date-pickers/TimePicker";
 
 
 interface ModalProps {
@@ -52,19 +57,30 @@ const Modal: React.FC<ModalProps> = ({
       value: "S",
     },
   ];
+  
 
   const [freq, setFreq] = useState<string>("Daily");
   const [title, setTitle] = useState<string | undefined>(undefined);
   const [description, setDescription] = useState<string | undefined>(undefined);
   const [subject, setSubject] = useState<string | undefined>(undefined);
   const [repeat, setRepeat] = useState<string>("");
-  const [time, setTime] = useState<string>("10 AM");
+  const [time, setTime] = useState<Date>();
 
   const updateFreq = (frequency: string) => {
     setFreq(frequency);
     if (frequency == "Monthly") {
       setRepeat("First Monday");
     }
+  };
+
+  const formatDateToAMPM = (isoDateString : Date) => {
+    const date = new Date(isoDateString);
+    const hours = date.getHours();
+    const minutes = date.getMinutes();
+    const period = hours >= 12 ? "PM" : "AM";
+    const formattedHours = hours % 12 || 12; // Convert 0 to 12 for 12-hour format
+    const formattedMinutes = minutes < 10 ? `0${minutes}` : minutes;
+    return `${formattedHours} ${period}`;
   };
 
   const addTodoDb = async () => {
@@ -74,7 +90,7 @@ const Modal: React.FC<ModalProps> = ({
       subject,
       frequency: freq,
       repeat,
-      time,
+      time: formatDateToAMPM(time),
     };
     try {
       const data = await axios.post(
@@ -94,7 +110,7 @@ const Modal: React.FC<ModalProps> = ({
       subject,
       frequency: freq,
       repeat,
-      time,
+      time: dayjs(time),
     };
 
     try {
@@ -195,20 +211,14 @@ const Modal: React.FC<ModalProps> = ({
       )}
       <div className="mb-[8px] flex justify-between items-center">
         <span className="h-fit text-black">Time</span>
-        <select
-          className="w-[70%] p-[5px] border-2 border-inherit rounded text-black"
-          onChange={(e) => setTime(e.target.value)}
-        >
-          <option value="10 AM" className="text-black">
-            10 AM
-          </option>
-          <option value="4 PM" className="text-black">
-            4 PM
-          </option>
-          <option value="10 PM" className="text-black">
-            10 PM
-          </option>
-        </select>
+        <LocalizationProvider dateAdapter={AdapterDayjs}>
+          <DemoContainer components={["TimePicker", "TimePicker"]}>
+            <TimePicker
+              value={time}
+              onChange={(newValue) => {newValue && setTime(newValue)}}
+            />
+          </DemoContainer>
+        </LocalizationProvider>
       </div>
       <div className="mb-[8px] gap-x-[20px] flex justify-end items-center">
         <button

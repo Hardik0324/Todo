@@ -42,7 +42,7 @@ const Table: React.FC<TableProps> = ({ todo, fetchTodo }) => {
     setInd((prevInd) => (prevInd === index ? undefined : index));
   };
   return (
-    <div className="m-5 h-[75%] border-2 border-inherit rounded">
+    <div className="m-5 h-[75%] border-inherit rounded">
       <div className="flex h-[10%] w-[100%] py-2 px-4 bg-[#D8D2DE]">
         <span className="w-[15%]">Title</span>
         <span className="w-[35%]">Description</span>
